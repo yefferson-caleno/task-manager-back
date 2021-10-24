@@ -2,6 +2,9 @@ package com.taskmanagerback.taskmanagerback.controller;
 
 import com.taskmanagerback.taskmanagerback.model.TaskModel;
 import com.taskmanagerback.taskmanagerback.service.TaskService;
+import com.taskmanagerback.taskmanagerback.util.exception.StatusNotFoundException;
+import com.taskmanagerback.taskmanagerback.util.exception.TeamNotFoundException;
+import com.taskmanagerback.taskmanagerback.util.exception.UserNotFoundException;
 import com.taskmanagerback.taskmanagerback.util.response.Response;
 import com.taskmanagerback.taskmanagerback.util.task.TaskParameter;
 import com.taskmanagerback.taskmanagerback.util.task.TaskParameterRequest;
@@ -23,7 +26,8 @@ public class TaskController {
 
     @PostMapping
     private ResponseEntity<Response<TaskModel>> save(
-            @Valid @RequestBody TaskParameterRequest request) {
+            @Valid @RequestBody TaskParameterRequest request)
+            throws UserNotFoundException, StatusNotFoundException, TeamNotFoundException {
         TaskParameter parameter = mapper.mapBuilder(request,
                 TaskParameter.TaskParameterBuilder.class).build();
         return new ResponseEntity<>(Response.<TaskModel>builder()

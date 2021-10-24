@@ -23,7 +23,7 @@ public class TaskModel {
     @Column(name = "task_title", nullable = false)
     private String title;
 
-    @Column(name = "task_description", nullable = false)
+    @Column(name = "task_description")
     private String description;
 
     @ManyToOne

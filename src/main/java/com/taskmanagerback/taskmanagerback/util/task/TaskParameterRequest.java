@@ -1,16 +1,11 @@
 package com.taskmanagerback.taskmanagerback.util.task;
 
-import com.taskmanagerback.taskmanagerback.model.StatusModel;
-import com.taskmanagerback.taskmanagerback.model.TeamModel;
-import com.taskmanagerback.taskmanagerback.model.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Data
 @Builder(toBuilder = true)
@@ -18,14 +13,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TaskParameterRequest {
 
-    @NotNull(message = "Debe ingresar el titulo de la tarea")
+    @NotBlank(message = "Debe ingresar el titulo de la tarea")
     private String title;
 
     private String description;
 
+    @NotBlank(message = "Debe asignar un usuario a la tarea")
     private Long userId;
 
+    @NotBlank(message = "Debe agregar un equipo a la tarea")
     private Long teamId;
 
+    @NotBlank(message = "Debe activar/desactivar la tarea")
     private Long statusId;
 }

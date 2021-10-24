@@ -20,8 +20,11 @@ import java.util.Optional;
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
+    @Autowired
     private UserService userService;
+    @Autowired
     private TeamService teamService;
+    @Autowired
     private StatusService statusService;
 
     public TaskModel save(TaskParameter parameter)

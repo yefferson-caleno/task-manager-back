@@ -25,13 +25,14 @@ public class TaskService {
     private UserService userService;
 
     public TaskModel save(TaskParameter parameter)
-            throws StatusNotFoundException, TeamNotFoundException, UserNotFoundException, StateNotFoundException {
+            throws StatusNotFoundException, TeamNotFoundException, UserNotFoundException, StateNotFoundException,
+            LoginNotFoundException {
         StatusModel status = statusService.findById(parameter.getStatusId()).orElseThrow(StatusNotFoundException::new);
         TeamModel team = teamService.findById(parameter.getTeamId()).orElseThrow(TeamNotFoundException::new);
         UserModel userAssigned = userService.findById(parameter.getUserAssignedId())
                 .orElseThrow(UserNotFoundException::new);
         UserModel userCreated = userService.findByEmail(parameter.getUserCreatedEmail())
-                .orElseThrow(UserNotFoundException::new);
+                .orElseThrow(LoginNotFoundException::new);
         StateModel state = stateService.findById(parameter.getStateId()).orElseThrow(StateNotFoundException::new);
 
         TaskModel task = TaskModel.builder().title(parameter.getTitle()).description(parameter.getDescription())

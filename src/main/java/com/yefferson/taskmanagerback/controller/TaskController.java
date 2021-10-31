@@ -28,7 +28,8 @@ public class TaskController {
 
     @PostMapping
     private ResponseEntity<Response<TaskModel>> save(@Valid @RequestBody TaskParameterRequest request)
-            throws StatusNotFoundException, TeamNotFoundException, UserNotFoundException, StateNotFoundException {
+            throws StatusNotFoundException, TeamNotFoundException, UserNotFoundException, StateNotFoundException,
+            LoginNotFoundException {
         TaskParameter parameter = mapper.map(request, TaskParameter.class);
         return new ResponseEntity<>(Response.<TaskModel>builder()
                 .data(taskService.save(parameter)).build(), HttpStatus.OK);

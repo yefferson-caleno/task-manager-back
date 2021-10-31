@@ -19,6 +19,8 @@ public class ConstanstApiRest {
     public static final String NOT_BLANK_TASK_USER_CREATED = "Debe registrar el usuario que creó la tarea";
     public static final String NOT_NULL_TASK_STATE = "Debe agregar un estado de progreso a la tarea";
     public static final String NOT_NULL_TASK_STATUS = "Debe activar/desactivar la tarea";
+    public static final String NOT_BLANK_LOGIN_EMAIL = "Debe ingresar el correo registrado";
+    public static final String NOT_BLANK_LOGIN_PASSWORD = "Debe ingresar la contraseña registrada";
 
     // Exception MSG.
     public static final String INVALID_PARAMS = "¡Par\u00e1metros de entrada invalidos!";
@@ -28,6 +30,6 @@ public class ConstanstApiRest {
     public static final String USER_NOT_FOUND = "No se ha encontrado la informaci\u00f3n del usuario";
     public static final String STATE_NOT_FOUND = "No se ha encontrado la informaci\u00f3n del estado de la tarea";
     public static final String TASK_NOT_FOUND = "No se ha encontrado la informaci\u00f3n de la tarea";
-    public static final String DATA_NOT_FOUND = "La DB no se ha creado o los datos est\u00e1ticos no se insertaron " +
-            "correctamente";
+    public static final String LOGIN_NOT_FOUND_EMAIL = "No se ha encontrado el email del usuario";
+    public static final String LOGIN_INCORRECT_PASSWORD = "La contraseña ingresada es incorrecta";
 }

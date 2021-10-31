@@ -69,4 +69,11 @@ public class HandlerExceptionConfig {
                 .build();
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({LoginNotFoundException.class})
+    public ResponseEntity<Response<Object>> handlerLoginNotFoundException(LoginNotFoundException e) {
+        Response<Object> response = Response.builder().status(HttpStatus.NOT_FOUND.value()).message(e.getMessage())
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 }

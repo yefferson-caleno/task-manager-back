@@ -5,6 +5,7 @@ import com.yefferson.taskmanagerback.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,5 +15,9 @@ public class StateService {
 
     public Optional<StateModel> findById(Long id) {
         return stateRepository.findById(id);
+    }
+
+    public List<StateModel> findAll() {
+        return stateRepository.findAll();
     }
 }

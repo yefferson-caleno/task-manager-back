@@ -4,6 +4,9 @@ public class ConstanstApiRest {
 
     public static final String HEALTH_MSG = "¡El servicio 'Task Maganer' se encuentra disponible!";
 
+    public static final String STATE_ACTIVE = "Activa";
+    public static final String STATE_CLOSED = "Cerrada";
+
     // Request MSG.
     public static final String NOT_BLANK_TEAM_DESCRIPTION = "Debe agregar un nombre al equipo";
     public static final String NOT_NULL_TEAM_STATUS = "Debe agregar un estado al equipo";

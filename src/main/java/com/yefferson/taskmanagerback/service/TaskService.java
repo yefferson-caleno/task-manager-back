@@ -1,5 +1,6 @@
 package com.yefferson.taskmanagerback.service;
 
+import com.yefferson.taskmanagerback.config.ConstanstApiRest;
 import com.yefferson.taskmanagerback.model.*;
 import com.yefferson.taskmanagerback.repository.TaskRepository;
 import com.yefferson.taskmanagerback.util.exception.*;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,10 +36,11 @@ public class TaskService {
         UserModel userCreated = userService.findByEmail(parameter.getUserCreatedEmail())
                 .orElseThrow(LoginNotFoundException::new);
         StateModel state = stateService.findById(parameter.getStateId()).orElseThrow(StateNotFoundException::new);
-
         TaskModel task = TaskModel.builder().title(parameter.getTitle()).description(parameter.getDescription())
                 .taskInit(parameter.getTaskInit()).taskEnd(parameter.getTaskEnd()).team(team).status(status)
                 .userAssigned(userAssigned).userCreated(userCreated).state(state).build();
+        if(state.getDescription().equals(ConstanstApiRest.STATE_ACTIVE)) task.setTaskInit(LocalDateTime.now());
+        if(state.getDescription().equals(ConstanstApiRest.STATE_CLOSED)) task.setTaskEnd(LocalDateTime.now());
         return taskRepository.save(task);
     }
 
@@ -93,6 +96,8 @@ public class TaskService {
             StateModel state = stateService.findById(parameter.getStateId())
                     .orElseThrow(StateNotFoundException::new);
             task.setState(state);
+            if(state.getDescription().equals(ConstanstApiRest.STATE_ACTIVE)) task.setTaskInit(LocalDateTime.now());
+            if(state.getDescription().equals(ConstanstApiRest.STATE_CLOSED)) task.setTaskEnd(LocalDateTime.now());
             needUpdate = true;
         }
 

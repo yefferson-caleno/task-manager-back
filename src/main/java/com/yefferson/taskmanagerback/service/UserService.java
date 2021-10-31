@@ -12,6 +12,7 @@ import com.yefferson.taskmanagerback.util.exception.UserNotFoundException;
 import com.yefferson.taskmanagerback.util.user.UserParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -33,8 +34,9 @@ public class UserService {
         StatusModel status = statusService.findById(parameter.getStatusId()).orElseThrow(StatusNotFoundException::new);
         TeamModel team = teamService.findById(parameter.getTeamId()).orElseThrow(TeamNotFoundException::new);
         RoleModel role = roleService.findById(parameter.getRoleId()).orElseThrow(RoleNotFoundException::new);
+        String md5Password = DigestUtils.md5DigestAsHex(parameter.getPassword().getBytes());
         UserModel user = UserModel.builder().name(parameter.getName()).email(parameter.getEmail())
-                .password(parameter.getPassword()).status(status).team(team).role(role).build();
+                .password(md5Password).status(status).team(team).role(role).build();
         return userRepository.save(user);
     }
 

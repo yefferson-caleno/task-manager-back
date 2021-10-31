@@ -1,9 +1,6 @@
 package com.yefferson.taskmanagerback.config;
 
-import com.yefferson.taskmanagerback.util.exception.RoleNotFoundException;
-import com.yefferson.taskmanagerback.util.exception.StatusNotFoundException;
-import com.yefferson.taskmanagerback.util.exception.TeamNotFoundException;
-import com.yefferson.taskmanagerback.util.exception.UserNotFoundException;
+import com.yefferson.taskmanagerback.util.exception.*;
 import com.yefferson.taskmanagerback.util.response.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +51,20 @@ public class HandlerExceptionConfig {
 
     @ExceptionHandler({UserNotFoundException.class})
     public ResponseEntity<Response<Object>> handlerUserNotFoundException(UserNotFoundException e) {
+        Response<Object> response = Response.builder().status(HttpStatus.NOT_FOUND.value()).message(e.getMessage())
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({StateNotFoundException.class})
+    public ResponseEntity<Response<Object>> handlerStateNotFoundException(StateNotFoundException e) {
+        Response<Object> response = Response.builder().status(HttpStatus.NOT_FOUND.value()).message(e.getMessage())
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({TaskNotFoundException.class})
+    public ResponseEntity<Response<Object>> handlerTaskNotFoundException(TaskNotFoundException e) {
         Response<Object> response = Response.builder().status(HttpStatus.NOT_FOUND.value()).message(e.getMessage())
                 .build();
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);

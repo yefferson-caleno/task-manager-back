@@ -13,6 +13,12 @@ public class ConstanstApiRest {
     public static final String NOT_NULL_USER_ROLE = "Debe agregar un rol al usuario";
     public static final String NOT_NULL_USER_TEAM = "Debe agregar un equipo al usuario";
     public static final String NOT_NULL_USER_STATUS = "Debe agregar un estado al usuario";
+    public static final String NOT_BLANK_TASK_TITLE = "Debe ingresar el titulo de la tarea";
+    public static final String NOT_NULL_TASK_TEAM = "Debe agregar un equipo a la tarea";
+    public static final String NOT_NULL_TASK_USER_ASSIGNED = "Debe asignar un usuario a la tarea";
+    public static final String NOT_BLANK_TASK_USER_CREATED = "Debe registrar el usuario que creó la tarea";
+    public static final String NOT_NULL_TASK_STATE = "Debe agregar un estado de progreso a la tarea";
+    public static final String NOT_NULL_TASK_STATUS = "Debe activar/desactivar la tarea";
 
     // Exception MSG.
     public static final String INVALID_PARAMS = "¡Par\u00e1metros de entrada invalidos!";
@@ -20,6 +26,8 @@ public class ConstanstApiRest {
     public static final String TEAM_NOT_FOUND = "No se ha encontrado la informaci\u00f3n del equipo";
     public static final String ROLE_NOT_FOUND = "No se ha encontrado la informaci\u00f3n del rol";
     public static final String USER_NOT_FOUND = "No se ha encontrado la informaci\u00f3n del usuario";
+    public static final String STATE_NOT_FOUND = "No se ha encontrado la informaci\u00f3n del estado de la tarea";
+    public static final String TASK_NOT_FOUND = "No se ha encontrado la informaci\u00f3n de la tarea";
     public static final String DATA_NOT_FOUND = "La DB no se ha creado o los datos est\u00e1ticos no se insertaron " +
             "correctamente";
 }

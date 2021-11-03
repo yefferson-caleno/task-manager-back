@@ -7,6 +7,8 @@ public class ConstanstApiRest {
     public static final String STATE_ACTIVE = "Activa";
     public static final String STATE_CLOSED = "Cerrada";
 
+    public static final String STATUS_INACTIVE = "Inactivo";
+
     // Request MSG.
     public static final String NOT_BLANK_TEAM_DESCRIPTION = "Debe agregar un nombre al equipo";
     public static final String NOT_NULL_TEAM_STATUS = "Debe agregar un estado al equipo";
@@ -35,4 +37,6 @@ public class ConstanstApiRest {
     public static final String TASK_NOT_FOUND = "No se ha encontrado la informaci\u00f3n de la tarea";
     public static final String LOGIN_NOT_FOUND_EMAIL = "No se ha encontrado el email del usuario";
     public static final String LOGIN_INCORRECT_PASSWORD = "La contraseña ingresada es incorrecta";
+    public static final String USER_INACTIVE = "El usuario se encuentra inactivo, informar al administrador";
+    public static final String TEAM_INACTIVE = "El equipo se encuentra inactivo, informar al administrador";
 }

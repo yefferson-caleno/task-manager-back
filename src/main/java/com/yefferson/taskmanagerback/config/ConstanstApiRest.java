@@ -37,5 +37,6 @@ public class ConstanstApiRest {
     public static final String TASK_NOT_FOUND = "No se ha encontrado la informaci\u00f3n de la tarea";
     public static final String LOGIN_NOT_FOUND_EMAIL = "No se ha encontrado el email del usuario";
     public static final String LOGIN_INCORRECT_PASSWORD = "La contraseña ingresada es incorrecta";
-    public static final String USER_INACTIVE = "El usuario se encuentra inactivo";
+    public static final String USER_INACTIVE = "El usuario se encuentra inactivo, informar al administrador";
+    public static final String TEAM_INACTIVE = "El equipo se encuentra inactivo, informar al administrador";
 }

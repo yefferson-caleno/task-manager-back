@@ -68,7 +68,8 @@ public class UserService {
         }
 
         if(StringUtils.hasLength(parameter.getPassword())) {
-            user.setPassword(parameter.getPassword());
+            String md5Password = DigestUtils.md5DigestAsHex(parameter.getPassword().getBytes());
+            user.setPassword(md5Password);
             needUpdate = true;
         }
 

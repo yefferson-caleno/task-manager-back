@@ -16,6 +16,9 @@ public class LoginService {
 
     public LoginParameterResponse login(LoginParameter parameter) throws LoginNotFoundException {
         UserModel user = userService.findByEmail(parameter.getEmail()).orElseThrow(LoginNotFoundException::new);
+        if (user.getStatus().getDescription() == ConstanstApiRest.STATUS_INACTIVE) {
+            throw new LoginNotFoundException(ConstanstApiRest.USER_INACTIVE);
+        }
         if(DigestUtils.md5DigestAsHex(parameter.getPassword().getBytes()).equals(user.getPassword()) ) {
             return LoginParameterResponse.builder().name(user.getName()).email(user.getEmail()).role(user.getRole())
                     .build();

@@ -68,6 +68,18 @@ public class TaskService {
             needUpdate = true;
         }
 
+        if(null != parameter.getUserAssignedId()) {
+            UserModel user = userService.findById(parameter.getUserAssignedId())
+                    .orElseThrow(UserNotFoundException::new);
+            task.setUserAssigned(user);
+        }
+
+        if(StringUtils.hasLength(parameter.getUserCreatedEmail())) {
+            UserModel user = userService.findByEmail(parameter.getUserCreatedEmail())
+                    .orElseThrow(UserNotFoundException::new);
+            task.setUserCreated(user);
+        }
+
         if(null != parameter.getTaskInit()) {
             task.setTaskInit(parameter.getTaskInit());
             needUpdate = true;
@@ -102,6 +114,7 @@ public class TaskService {
         }
 
         if(needUpdate) {
+            task.setUpdated(LocalDateTime.now());
             taskRepository.save(task);
         }
 

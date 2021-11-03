@@ -1,6 +1,7 @@
 package com.yefferson.taskmanagerback.util.login;
 
 import com.yefferson.taskmanagerback.model.RoleModel;
+import com.yefferson.taskmanagerback.model.TeamModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,4 +15,5 @@ public class LoginParameterResponse {
     private String name;
     private String email;
     private RoleModel role;
+    private TeamModel team;
 }

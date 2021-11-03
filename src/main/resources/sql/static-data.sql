@@ -51,8 +51,8 @@ VALUES(current_timestamp(), 'administradores', current_timestamp(),
 
 /* ------------------------------------------------------------------------------------------------------ */
 INSERT INTO `task-manager-db`.dy_user
-(user_created, user_email, user_name, user_updated, role_id, status_id, team_id)
-VALUES(current_timestamp(), 'admin@admin.com', 'admin', current_timestamp(),
+(user_created, user_email, user_name, user_password, user_updated, role_id, status_id, team_id)
+VALUES(current_timestamp(), 'admin@admin.com', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', current_timestamp(),
 	(SELECT sr.role_id FROM `task-manager-db`.st_role sr WHERE sr.role_description = 'Administrador'),
 	(SELECT ss.status_id FROM `task-manager-db`.st_status ss WHERE ss.status_description = 'Activo'),
 	(SELECT dt.team_id FROM `task-manager-db`.dy_team dt WHERE dt.team_description = 'administradores'));

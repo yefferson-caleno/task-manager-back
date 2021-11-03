@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "api/role", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/role", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RoleController {
     @Autowired
     private RoleService roleService;

@@ -39,9 +39,11 @@ public class TaskService {
         TaskModel task = TaskModel.builder().title(parameter.getTitle()).description(parameter.getDescription())
                 .taskInit(parameter.getTaskInit()).taskEnd(parameter.getTaskEnd()).team(team).status(status)
                 .userAssigned(userAssigned).userCreated(userCreated).state(state)
-                .created(LocalDateTime.now()).updated(LocalDateTime.now()).build();
-        if(state.getDescription().equals(ConstanstApiRest.STATE_ACTIVE)) task.setTaskInit(LocalDateTime.now());
-        if(state.getDescription().equals(ConstanstApiRest.STATE_CLOSED)) task.setTaskEnd(LocalDateTime.now());
+                .created(LocalDateTime.now().minusHours(5L)).updated(LocalDateTime.now().minusHours(5L)).build();
+        if(state.getDescription().equals(ConstanstApiRest.STATE_ACTIVE)) task.setTaskInit(LocalDateTime.now()
+                .minusHours(5L));
+        if(state.getDescription().equals(ConstanstApiRest.STATE_CLOSED)) task.setTaskEnd(LocalDateTime.now()
+                .minusHours(5L));
         return taskRepository.save(task);
     }
 
@@ -109,13 +111,15 @@ public class TaskService {
             StateModel state = stateService.findById(parameter.getStateId())
                     .orElseThrow(StateNotFoundException::new);
             task.setState(state);
-            if(state.getDescription().equals(ConstanstApiRest.STATE_ACTIVE)) task.setTaskInit(LocalDateTime.now());
-            if(state.getDescription().equals(ConstanstApiRest.STATE_CLOSED)) task.setTaskEnd(LocalDateTime.now());
+            if(state.getDescription().equals(ConstanstApiRest.STATE_ACTIVE)) task.setTaskInit(LocalDateTime.now()
+                    .minusHours(5L));
+            if(state.getDescription().equals(ConstanstApiRest.STATE_CLOSED)) task.setTaskEnd(LocalDateTime.now()
+                    .minusHours(5L));
             needUpdate = true;
         }
 
         if(needUpdate) {
-            task.setUpdated(LocalDateTime.now());
+            task.setUpdated(LocalDateTime.now().minusHours(5L));
             taskRepository.save(task);
         }
 

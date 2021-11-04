@@ -25,7 +25,7 @@ public class TeamService {
     public TeamModel save(TeamParameter parameter) throws StatusNotFoundException {
         StatusModel status = statusService.findById(parameter.getStatusId()).orElseThrow(StatusNotFoundException::new);
         TeamModel team = TeamModel.builder().description(parameter.getDescription()).status(status)
-                .created(LocalDateTime.now()).updated(LocalDateTime.now()).build();
+                .created(LocalDateTime.now().minusHours(5L)).updated(LocalDateTime.now().minusHours(5L)).build();
         return repository.save(team);
     }
 
@@ -54,7 +54,7 @@ public class TeamService {
         }
 
         if(needUpdate) {
-            team.setUpdated(LocalDateTime.now());
+            team.setUpdated(LocalDateTime.now().minusHours(5L));
             repository.save(team);
         }
 

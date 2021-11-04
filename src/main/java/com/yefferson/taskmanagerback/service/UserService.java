@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,8 @@ public class UserService {
         RoleModel role = roleService.findById(parameter.getRoleId()).orElseThrow(RoleNotFoundException::new);
         String md5Password = DigestUtils.md5DigestAsHex(parameter.getPassword().getBytes());
         UserModel user = UserModel.builder().name(parameter.getName()).email(parameter.getEmail())
-                .password(md5Password).status(status).team(team).role(role).build();
+                .password(md5Password).status(status).team(team).role(role)
+                .created(LocalDateTime.now()).updated(LocalDateTime.now()).build();
         return userRepository.save(user);
     }
 
@@ -95,6 +97,7 @@ public class UserService {
         }
 
         if(needUpdate) {
+            user.setUpdated(LocalDateTime.now());
             userRepository.save(user);
         }
 

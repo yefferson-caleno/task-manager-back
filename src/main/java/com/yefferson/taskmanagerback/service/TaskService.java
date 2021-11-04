@@ -38,7 +38,8 @@ public class TaskService {
         StateModel state = stateService.findById(parameter.getStateId()).orElseThrow(StateNotFoundException::new);
         TaskModel task = TaskModel.builder().title(parameter.getTitle()).description(parameter.getDescription())
                 .taskInit(parameter.getTaskInit()).taskEnd(parameter.getTaskEnd()).team(team).status(status)
-                .userAssigned(userAssigned).userCreated(userCreated).state(state).build();
+                .userAssigned(userAssigned).userCreated(userCreated).state(state)
+                .created(LocalDateTime.now()).updated(LocalDateTime.now()).build();
         if(state.getDescription().equals(ConstanstApiRest.STATE_ACTIVE)) task.setTaskInit(LocalDateTime.now());
         if(state.getDescription().equals(ConstanstApiRest.STATE_CLOSED)) task.setTaskEnd(LocalDateTime.now());
         return taskRepository.save(task);
